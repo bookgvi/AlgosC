@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
+int _SuffixArraymain() {
     char * str = "abracadabra";
 
     unsigned int startTime = clock();
