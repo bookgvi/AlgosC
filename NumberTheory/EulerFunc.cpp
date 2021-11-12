@@ -16,8 +16,8 @@ public:
     }
 };
 
-int amain() {
-    const int n = 10;
-    std::cout << Euler::euler(n) << "\n";
-    return 0;
-}
+//int amain() {
+//    const int n = 10;
+//    std::cout << Euler::euler(n) << "\n";
+//    return 0;
+//}

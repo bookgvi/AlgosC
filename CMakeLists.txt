@@ -5,4 +5,4 @@ set(CMAKE_C_STANDARD_INCLUDE_DIRECTORIES /Library/Developer/CommandLineTools/usr
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-add_executable(Algos NumberTheory/EulerFunc.cpp Sort/Piramid.cpp String/SuffixArray.cpp Combinatorics/Permutations.cpp)
+add_executable(Algos Combinatorics/Permutations.cpp)

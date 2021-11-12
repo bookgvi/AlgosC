@@ -4,7 +4,7 @@ using namespace std;
 
 class Solution {
 public:
-    int arrangeCoins(int n) {
+    static int arrangeCoins(int n) {
         vector<int> dp;
         dp.push_back(1);
         n -= dp[0];
@@ -18,7 +18,7 @@ public:
     }
 };
 
-int arrangin_coins_main() {
-    Solution s;
-    int res = s.arrangeCoins((1 << 31) - 1);
-}
+//int main() {
+//    Solution s;
+//    int res = s.arrangeCoins((1 << 31) - 1);
+//}

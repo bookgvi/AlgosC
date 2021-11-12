@@ -27,7 +27,7 @@ void merge(int l, int mid, int r, int * ptrArr) {
         *(ptrArr + l + i) = merge[i];
 }
 
-vi sort(vi arr, int len) {
+vi sortM(vi arr, int len) {
     for (int i = 1; i < len; i <<= 1) {
         for (int j = 0; j < len - i; j += (i << 1)) {
             merge(j, j + i, min(len, j + (i << 1)), &arr[0]);
@@ -36,12 +36,12 @@ vi sort(vi arr, int len) {
     return arr;
 }
 
-int _main() {
-    vi arr = {2, 3, 45, 1, 0, 5, 5, 1, 1, 34, 12, 11};
-    vi sortedArr = sort(arr, arr.size());
-
-    for (int elt : arr) cout << elt << " ";
-    cout << "\n";
-    for (int elt : sortedArr) cout << elt << " ";
-    cout << "\n";
-}
+//int _Mmain() {
+//    vi arr = {2, 3, 45, 1, 0, 5, 5, 1, 1, 34, 12, 11};
+//    vi sortedArr = sortM(arr, arr.size());
+//
+//    for (int elt : arr) cout << elt << " ";
+//    cout << "\n";
+//    for (int elt : sortedArr) cout << elt << " ";
+//    cout << "\n";
+//}
