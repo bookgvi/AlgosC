@@ -19,7 +19,7 @@ void displayArrP(vi arr);
 
 const vl factorial = fact();
 
-int main() {
+int perm() {
     vi arr = {1, 2, 3, 4};
     int k = 4;
     vi numP = getPermutationByNum(arr.size(), k);

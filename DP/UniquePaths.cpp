@@ -5,7 +5,7 @@ using namespace std;
 typedef vector<vector<int>> vvi;
 typedef vector<int> vi;
 
-class Solution {
+class Solution1 {
 public:
     int uniquePaths(int m, int n) {
         vvi dp(m + 1, vi(n + 1, 1));

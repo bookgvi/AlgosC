@@ -19,7 +19,7 @@ private:
     }
 public:
     void work() {
-        int res = comb(7,3);
+        int res = comb(14,7);
         cout << res << "\n";
     }
 };
