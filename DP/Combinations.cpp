@@ -5,6 +5,7 @@ typedef vector<int> vi;
 typedef vector<vector<int>> vvi;
 
 class Combinations {
+    const vvi pt = generate(33);
 private:
     int comb(int n, int k) {
         vvi d(n + 1, vi(n + 1));
@@ -18,7 +19,11 @@ private:
         return d[n][k];
     }
 
-    vector<vector<int>> generate(int numRows) {
+    vector<int> getRow(int rowIndex) {
+        return pt[rowIndex];
+    }
+
+    static vector<vector<int>> generate(int numRows) {
         vvi d(numRows);
         d[0].push_back({1});
         for (int i = 1; i < numRows; i += 1) {
@@ -31,7 +36,7 @@ private:
     }
 public:
     void work() {
-        vvi res = generate(7);
+        vi res = getRow(3);
         cout << "res" << "\n";
     }
 };
