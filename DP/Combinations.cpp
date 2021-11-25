@@ -17,9 +17,21 @@ private:
         }
         return d[n][k];
     }
+
+    vector<vector<int>> generate(int numRows) {
+        vvi d(numRows);
+        d[0].push_back({1});
+        for (int i = 1; i < numRows; i += 1) {
+            vi col(i + 1, 1);
+            d[i] = col;
+            for (int j = 1; j < i; j += 1)
+                d[i][j] = d[i - 1][j - 1] + d[i - 1][j];
+        }
+        return d;
+    }
 public:
     void work() {
-        int res = comb(14,7);
-        cout << res << "\n";
+        vvi res = generate(7);
+        cout << "res" << "\n";
     }
 };
