@@ -37,6 +37,7 @@ private:
 public:
     void work() {
         vi res = getRow(3);
+        int c = comb(23, 2);
         cout << "res" << "\n";
     }
 };
