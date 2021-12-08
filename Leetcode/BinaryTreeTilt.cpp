@@ -18,7 +18,7 @@ struct TreeNode {
 class BinaryTreeTilt {
 private:
     TreeNode *tree = new TreeNode(), *t;
-    int sumLeft = 0, sumRight = 0;
+    int sumLeft = 0, sumRight = 0, ans = 0;
 
     void buildTree(vi &arr) {
         int len = arr.size(), half = len >> 1, it = 0;
@@ -45,41 +45,20 @@ private:
         }
     }
 
-    void sumLeftTree(TreeNode *tree) {
-        if (tree != nullptr) {
-            sumLeftTree(tree->left);
-            sumLeft += tree->val;
-            sumLeftTree(tree->right);
-        }
-    }
-
-    void sumRightTree(TreeNode *tree) {
-        if (tree != nullptr) {
-            sumRightTree(tree->left);
-            sumRight += tree->val;
-            sumRightTree(tree->right);
-        }
-    }
-
-    void sumTree(TreeNode *root) {
-        if (root != nullptr) {
-            sumLeftTree(root->left);
-            sumRightTree(root->right);
-        }
+    int sumTree(TreeNode *tree) {
+        if (tree == nullptr) return 0;
+        int sumLeft = sumTree(tree->left);
+        int sumRight = sumTree(tree->right);
+        int tilt = abs(sumLeft - sumRight);
+        ans += tilt;
+        return tree->val + sumLeft + sumRight;
     }
 
 
 public:
     int findTilt(TreeNode *root) {
-        sumTree(root->left);
-        int leftAns = abs(sumLeft - sumRight);
-        sumLeft = 0, sumRight = 0;
-        sumTree(root->right);
-        int rightAns = abs(sumLeft - sumRight);
-        sumLeft = 0, sumRight = 0;
         sumTree(root);
-        int centerAns = abs(sumLeft - sumRight);
-        return leftAns + centerAns + rightAns;
+        return ans;
     }
 
     void work() {
