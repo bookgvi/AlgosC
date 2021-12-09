@@ -44,17 +44,22 @@ private:
 
 public:
     int getDecimalValue(ListNode *head) {
-        getList(head);
+//        getList(head);
         int ans = 0, it = 0;
-        for (auto i = list.rbegin(); i != list.rend(); i++)
-            ans += (*i) * pow(2, it++);
+        ans = head->val << head->val;
+        while (head->next != nullptr) {
+            head = head->next;
+            int t2 = head->val << head->val;
+            ans = (t2 + ans) << 1;
+        }
+//        ans >>= 1;
         return ans;
     }
 
     void work() {
 //        vector<int> vec = {1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0};
-        vector<int> vec = {1,1,1,1,1,1,1,1,1,0,1,0,0,0,1,1,0};
-//        vector<int> vec = {1, 0, 1};
+//        vector<int> vec = {1,1,1,1,1,1,1,1,1,0,1,0,0,0,1,1,0};
+        vector<int> vec = {1, 1, 1};
         ListNode *h = new ListNode(vec[0]);
         setList(h, vec, 1);
         getDecimalValue(h);

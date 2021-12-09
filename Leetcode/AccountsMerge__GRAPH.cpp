@@ -23,7 +23,7 @@ private:
     }
 
     vs sort(int start, int end, vs &arr) {
-        return arr.size() > 15 ? mergeSort(start, end, arr) : insertSort(start, end, arr);
+        return arr.size() > 10 ? mergeSort(start, end, arr) : insertSort(start, end, arr);
     }
 
     vs insertSort(int start, int end, vs &arr) {

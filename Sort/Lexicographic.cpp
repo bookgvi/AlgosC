@@ -7,8 +7,8 @@ typedef vector<string> vs;
 
 class LexicographicSort {
 public:
-    int comparator(string str1, string str2) {
-        int len1 = (int) str1.length(), len2 = (int) str2.length();
+    static int comparator(string &str1, string &str2) {
+        int len1 = str1.length(), len2 = str2.length();
         int len = min(len1, len2);
         for (int i = 0; i < len; i += 1) {
             if (str1[i] != str2[i]) return str1[i] - str2[i];
@@ -16,18 +16,18 @@ public:
         return len1 - len2;
     }
 
-    vs sort(vs &strList) {
-        return strList.size() > 20 ? mergeSort(strList) : insertSort(strList);
+    static vs sort(vs &arr) {
+        return mergeSort(arr);
     }
 
-    vs mergeSort(vs &arr) {
+    static vs mergeSort(vs &arr) {
         for (int i = 1, len = (int) arr.size(); i < len; i <<= 1)
             for (int j = 0; j < len - i; j += i << 1)
-                merge(j, i + j, min(len, j + (i << 1)), arr);
+                merge(j, j + i, min(len, j + (i << 1)), arr);
         return arr;
     }
 
-    void merge(int l, int mid, int r, vs &arr) {
+    static void merge(int l, int mid, int r, vs &arr) {
         int it1 = 0, it2 = 0;
         vs merge(r - l, "");
         while (l + it1 < mid && mid + it2 < r) {
@@ -51,41 +51,35 @@ public:
             arr[l + i] = merge[i];
     }
 
-    vs insertSort(vs &arr) {
-        for (int i = 0, len = (int) arr.size(); i < len; i += 1)
-            for (int j = i; j > 0 && comparator(arr[j - 1], arr[j]) > 0; j -= 1)
-                swap(arr[j - 1], arr[j]);
-        return arr;
-    }
-
-    int getSet(string &str) {
-        int set = 0;
-        for (int i = 0, len = (int) str.length(); i < len; i += 1)
-            set |= (1 << (str[i] - 'a' + 1));
-        return set;
-    }
-
-    string getSubStrFromSet(int set) {
-        string str = "";
-        for (int i = 0; i < 32; i += 1)
-            if (set & (1 << i)) str += i + 'a' - 1;
-        return str;
-    }
-
-    vs generateSubStr(string str, int len) {
+    static vs generateSubStr(string &str, int n) {
         vs res;
         int set = getSet(str);
         int b = 0;
         do {
-            string ss = getSubStrFromSet(b);
-            if (ss.length() == len) res.push_back(ss);
+            string str = getStr(b);
+            if ((int) str.length() == n) res.push_back(str);
         } while ((b = (b - set) & set));
+        return res;
+    }
+
+    static int getSet(string &str) {
+        int set = 0;
+        for (int i = 0, len = (int) str.length(); i < len; i += 1)
+            set |= (1 << (str[i] - 'a'));
+        return set;
+    }
+
+    static string getStr(int subSet) {
+        string res = "";
+        for (int i = 0; i < 32; i += 1) {
+            if (subSet & (1 << i)) res += i + 'a';
+        }
         return res;
     }
 
     void work() {
         int n = 4;
-        string str = "cabflv";
+        string str = "czwqabflv";
         vs res = generateSubStr(str, n);
         res = sort(res);
     }

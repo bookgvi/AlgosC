@@ -5,7 +5,7 @@ typedef vector<int> vi;
 
 class FindSubStringSuffixArr {
 private:
-    vi suffixArray(string &str) {
+    static vi suffixArray(string &str) {
         int len = (int) str.length(), b = 8;
         vi p(len, 0), c(len, 0), count(1 << b, 0);
         for (int i = 0; i < len; i += 1)
@@ -36,7 +36,7 @@ private:
             cn[p[0]] = 0;
             classes = 1;
             for (int i = 1; i < len; i += 1) {
-                int mid1 = (p[i] - (1 << h)) % len, mid2 = (p[i - 1] - (1 << h)) % len;
+                int mid1 = (p[i] + (1 << h)) % len, mid2 = (p[i - 1] + (1 << h)) % len;
                 if (c[p[i]] != c[p[i - 1]] || c[mid1] != c[mid2]) classes += 1;
                 cn[p[i]] = classes - 1;
             }
@@ -46,7 +46,7 @@ private:
         return p;
     }
 
-    int binSearchL(int chCode, vi &arr, int off, string &str) {
+    static int binSearchL(int chCode, vi &arr, int off, string &str) {
         int len = (int) arr.size(), k = len - 1;
         for (int i = len >> 1; i > 0; i >>= 1)
             while (k - i >= 0
@@ -57,7 +57,7 @@ private:
         return -1;
     }
 
-    int binSearchR(int chCode, vi &arr, int off, string &str) {
+    static int binSearchR(int chCode, vi &arr, int off, string &str) {
         int len = (int) arr.size(), k = 0;
         for (int i = len >> 1; i > 0; i >>= 1)
             while (k + i < len
@@ -68,22 +68,19 @@ private:
         return -1;
     }
 
-    vi searchSubStr(string &str, string &ss) {
-        vi indexes;
+    static vi searchSubStr(string &str, string &ss) {
         vi p = suffixArray(str);
-        for (int i = 0, lenSS = (int) ss.length(); i < lenSS; i += 1) {
+        for (int i = 0, len = (int) ss.length(); i < len; i += 1) {
             int l = binSearchL(ss[i], p, i, str);
             if (l == -1) {
-                cout << "not found..." << "\n";
+                cout << "not found...\n";
                 return {};
             }
             int r = binSearchR(ss[i], p, i, str);
-            vi tmp(p.size());
-            for (int j = 0, len = (int) p.size(); j < len; j += 1)
-                tmp[j] = p[j];
+            vi t = p;
             p = vi(r - l + 1, 0);
-            for (auto j = 0; j != r - l + 1; j += 1)
-                p[j] = tmp[l + j];
+            for (int j = 0; j < r - l + 1; j += 1)
+                p[j] = t[j + l];
         }
         return p;
     }
@@ -91,7 +88,7 @@ private:
 public:
     void work() {
         string str = "abracadabra";
-        string ss = "cada";
+        string ss = "a";
         string s1 = str.substr(1);
         int s10 = str.substr(1)[(int) s1.length()];
         int s11 = str.substr(1)[(int) s1.length() - 1];

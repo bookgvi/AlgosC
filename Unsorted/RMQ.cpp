@@ -18,6 +18,7 @@ private:
         sanitize(v, v);
     }
 
+
     void sanitize(int &l, int &r) {
         if (l > r) swap(l, r);
         l = max(l, 0);
@@ -60,7 +61,7 @@ public:
         init();
         buildST();
         int res = queryST(0, n);
-        int res1 = queryST(3, 4);
+        int res1 = queryST(8, 4);
         modify(n + 5, 2);
         cout << "res";
     }

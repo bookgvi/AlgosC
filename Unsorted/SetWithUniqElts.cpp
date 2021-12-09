@@ -63,8 +63,8 @@ private:
     }
 public:
     void work() {
-        vvi quasiSet = {{},
-                        {}};
+        vvi quasiSet = {{6, 1, 2, 3, 4},
+                        {6, 1, 3, 5, 7, 8}};
         vi res = buildSet(quasiSet);
         cout << "res";
     }

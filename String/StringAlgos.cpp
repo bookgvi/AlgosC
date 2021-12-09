@@ -6,7 +6,7 @@ typedef vector<int> vi;
 
 class StringAlgos {
 private:
-    string str = "aabcaabaac";
+    string str = "aabaabaab";
 
     void displayArr(vi arr) {
         for (auto elt : arr)
@@ -14,8 +14,8 @@ private:
         cout << "\n";
     }
 
-    vi zFunc(string str) {
-        int len = (int) str.size();
+    static vi zFunc(string &str) {
+        int len = (int) str.length();
         vi z(len, 0);
         for (int i = 1, l = 0, r = 0; i < len; i += 1) {
             if (i <= r) z[i] = min(z[i - l], r - i + 1);
@@ -28,8 +28,8 @@ private:
         return z;
     }
 
-    vi piFunc(string str) {
-        int len = (int) str.size();
+    static vi piFunc(string &str) {
+        int len = (int) str.length();
         vi pi(len, 0);
         for (int i = 0; i < len; i += 1)
             for (int j = 0; j <= i; j += 1) {
@@ -40,23 +40,23 @@ private:
         return pi;
     }
 
-    vi piFuncExt(string str) {
-        int len = (int) str.size();
+    static vi piFuncExt(string &str) {
+        int len = (int) str.length();
         vi pi(len, 0);
         for (int i = 1; i < len; i += 1) {
             int j = pi[i - 1];
-            while(j > 0 && str[i] != str[j]) j = pi[j - 1];
+            while (j > 0 && str[i] != str[j]) j = pi[j - 1];
             if (str[i] == str[j]) pi[i] = j + 1;
         }
         return pi;
     }
 
-    vi manacher(string str) {
-        int len = (int) str.size();
+    static vi manacher(string &str) {
+        int len = (int) str.length();
         vi m(len, 0);
         for (int i = 1, l = 0, r = 0; i < len; i += 1) {
             if (i < r) m[i] = min(m[l - i + r], r - i + 1);
-            while(i - m[i] >= 0 && i + m[i] < len && str[i - m[i]] == str[i + m[i]]) m[i] += 1;
+            while (i - m[i] >= 0 && i + m[i] < len && str[i - m[i]] == str[i + m[i]]) m[i] += 1;
             if (i + m[i] - 1 > r) {
                 l = i - m[i] + 1;
                 r = i + m[i] - 1;
@@ -65,13 +65,21 @@ private:
         return m;
     }
 
+    static int zipStr(string &str) {
+        int len = (int) str.length(), lastSuff = piFuncExt(str)[len - 1];
+        int pos = len - lastSuff;
+        if ((len % pos) == 0) return pos;
+        return -1;
+    }
 public:
-    void display() {
+    void work() {
         cout << str << "\n";
         vi z = zFunc(str);
         vi pi = piFunc(str);
         vi piExt = piFuncExt(str);
         vi m = manacher(str);
+        int zip = zipStr(str);
+        cout << "zip: " << zip << "\n";
         displayArr(z);
         displayArr(pi);
         displayArr(piExt);
