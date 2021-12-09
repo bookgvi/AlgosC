@@ -3,6 +3,7 @@
 #include "String/SuffixArray.cpp"
 #include "String/FindSubStringSuffixArr.cpp"
 #include "String/LongestCommonPrefix.cpp"
+#include "String/RabinKarp.cpp"
 #include "Leetcode/FindAllNumbersDisappearedinanArray.cpp"
 #include "Leetcode/SingleElementinaSortedArray.cpp"
 #include "Sort/Lexicographic.cpp"
@@ -34,11 +35,12 @@
 #include "Leetcode/MaximumProductSubarray.cpp"
 #include "Leetcode/ConvertBinaryNumberinaLinkedListtoInteger.cpp"
 #include "Leetcode/BinaryTreeTilt.cpp"
+#include "Leetcode/JumpGameIII.cpp"
 #include "Unsorted/RMQ.cpp"
 #include "Unsorted/SetWithUniqElts.cpp"
 
 int main() {
-    StringAlgos app;
+    RabinKarp app;
     app.work();
     return 0;
 }
