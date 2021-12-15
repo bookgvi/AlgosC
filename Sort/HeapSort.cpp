@@ -28,19 +28,17 @@ private:
     }
 
     static vi build(vi arr) {
-        for (int i = (int) arr.size(); i >= 0; i -= 1)
+        for (int i = (int) arr.size() - 1; i >= 0; i -= 1)
             siftDown(i, arr);
         return arr;
     }
 
     static vi sort(vi arr) {
-        int len = (int) arr.size();
-        vi sorted(len, 0);
-        arr = build(arr);
-        for (int i = 0; i < len; i += 1) {
-            sorted[i] = arr[0];
-            arr[0] = INT_MAX;
-            siftDown(0, arr);
+        vi sorted, heap = build(arr);
+        for (int i = 0, len = (int) arr.size(); i < len; i += 1) {
+            sorted.push_back(heap[0]);
+            heap[0] = INT_MAX;
+            siftDown(0, heap);
         }
         return sorted;
     }

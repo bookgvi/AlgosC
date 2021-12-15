@@ -1,13 +1,14 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 typedef vector<int> vi;
 
 class Insert {
 private:
 
-    static vi sort(vi & arr) {
+    static vi sort(vi &arr) {
         for (int i = 0, len = (int) arr.size(); i < len; i += 1)
-            for (int j = i; j > 0 && arr[j - 1] - arr[j] > 0; j -= 1)
+            for (int j = i; j > 0 && arr[j - 1] > arr[j]; j -= 1)
                 swap(arr[j - 1], arr[j]);
         return arr;
     }

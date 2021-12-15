@@ -5,8 +5,8 @@ public:
     static long euler(int n) {
         int res = n;
         for (int i = 2; (long) i * i <= n; i += 1) {
-            if (n % i == 0) {
-                while(n % i == 0) n /= i;
+            if (!(n % i)) {
+                while(!(n % i)) n /= i;
                 res -= res / i;
             }
         }
@@ -17,6 +17,6 @@ public:
     void work() {
         int n = 10;
         long eulerR = euler(n);
-        cout << "res";
+        printf("n = %d, euler (phi) = %ld", n, eulerR);
     }
 };

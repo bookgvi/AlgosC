@@ -61,7 +61,7 @@ private:
         int len = (int) arr.size(), k = 0;
         for (int i = len >> 1; i > 0; i >>= 1)
             while (k + i < len
-                   && off < str.substr(arr[k + i]).length()
+                   && off < str.substr(arr[i + k]).length()
                    && str.substr(arr[k + i])[off] <= chCode)
                 k += i;
         if (off < str.substr(arr[k]).length() && str.substr(arr[k])[off] == chCode) return k;
@@ -69,18 +69,19 @@ private:
     }
 
     static vi searchSubStr(string &str, string &ss) {
+        int lenSS = (int) ss.length();
         vi p = suffixArray(str);
-        for (int i = 0, len = (int) ss.length(); i < len; i += 1) {
+        for (int i = 0; i < lenSS; i += 1) {
             int l = binSearchL(ss[i], p, i, str);
-            if (l == -1) {
+            if(l == -1) {
                 cout << "not found...\n";
                 return {};
             }
             int r = binSearchR(ss[i], p, i, str);
-            vi t = p;
+            vi tmp = p;
             p = vi(r - l + 1, 0);
             for (int j = 0; j < r - l + 1; j += 1)
-                p[j] = t[j + l];
+                p[j] = tmp[l + j];
         }
         return p;
     }
@@ -88,7 +89,7 @@ private:
 public:
     void work() {
         string str = "abracadabra";
-        string ss = "a";
+        string ss = "bracadabree";
         string s1 = str.substr(1);
         int s10 = str.substr(1)[(int) s1.length()];
         int s11 = str.substr(1)[(int) s1.length() - 1];

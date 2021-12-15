@@ -21,6 +21,7 @@
 #include "DP/MinimumPathSum.cpp"
 #include "DP/ArithmeticSlices.cpp"
 #include "NumberTheory/Eratosthen.cpp"
+#include "NumberTheory/EulerFunc.cpp"
 #include "Leetcode/IntervalListIntersections.cpp"
 #include "Leetcode/MaximumSubarray.cpp"
 #include "Leetcode/SearchInsertPosition.cpp"
@@ -36,11 +37,13 @@
 #include "Leetcode/ConvertBinaryNumberinaLinkedListtoInteger.cpp"
 #include "Leetcode/BinaryTreeTilt.cpp"
 #include "Leetcode/JumpGameIII.cpp"
+#include "Leetcode/ConsecutiveCharacters.cpp"
 #include "Unsorted/RMQ.cpp"
 #include "Unsorted/SetWithUniqElts.cpp"
+#include "Combinatorics/Permutations.cpp"
 
 int main() {
-    RabinKarp app;
+    SetWithUniqElts app;
     app.work();
     return 0;
 }

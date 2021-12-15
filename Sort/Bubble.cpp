@@ -6,14 +6,14 @@ typedef vector<int> vi;
 
 class Bubble {
 private:
-    static vi sort(vi &arr) {
+    static vi sort(vi arr) {
         for (int i = 0, len = (int) arr.size(); i < len; i += 1)
             for (int j = 0; j < len - 1; j += 1)
-                if (arr[j] - arr[j + 1] > 0) swap(arr[j], arr[j + 1]);
+                if (arr[j] > arr[j + 1]) swap(arr[j + 1], arr[j]);
         return arr;
     }
 
-    static void display(vi & arr) {
+    static void display(vi &arr) {
         for (auto elt : arr)
             cout << elt << " ";
         cout << "\n";

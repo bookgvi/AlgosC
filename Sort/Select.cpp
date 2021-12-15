@@ -6,7 +6,7 @@ typedef vector<int> vi;
 
 class Select {
 private:
-    static vi sort(vi & arr) {
+    static vi sort(vi arr) {
         for (int i = 0, len = (int) arr.size(); i < len; i += 1)
             for (int j = i + 1; j < len; j += 1)
                 if (arr[i] - arr[j] > 0) swap(arr[i], arr[j]);
