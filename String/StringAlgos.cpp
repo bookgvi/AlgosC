@@ -6,9 +6,10 @@ typedef vector<int> vi;
 
 class StringAlgos {
 private:
-    string str = "aabaabaab";
+    string str = "abrakadabra";
 
-    void displayArr(vi arr) {
+    void displayArr(vi &arr, string title) {
+        cout << title << "\t\t";
         for (auto elt : arr)
             printf("%d ", elt);
         cout << "\n";
@@ -31,11 +32,12 @@ private:
     static vi piFunc(string &str) {
         int len = (int) str.length();
         vi pi(len, 0);
-        for (int i = 0; i < len; i += 1)
-            for (int j = 0; j <= i; j += 1) {
-                string ss1 = str.substr(0, j);
-                string ss2 = str.substr(i - j + 1, j);
-                if (ss1 == ss2) pi[i] = j;
+        for (int i = 1; i < len; i += 1)
+            for (int j = 1; j <= i; j += 1) {
+                string tmp = str.substr(0, j);
+                string tmp2 = str.substr(i - j + 1, j);
+                if (str.substr(0, j) == str.substr(i - j + 1, j))
+                    pi[i] = j;
             }
         return pi;
     }
@@ -80,10 +82,10 @@ public:
         vi m = manacher(str);
         int zip = zipStr(str);
         cout << "zip: " << zip << "\n";
-        displayArr(z);
-        displayArr(pi);
-        displayArr(piExt);
-        displayArr(m);
+        displayArr(z, "x-func:\t");
+        displayArr(pi, "pi-func:");
+        displayArr(piExt, "pi-funcExt:");
+        displayArr(m, "manacher:");
     }
 
 };

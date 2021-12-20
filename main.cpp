@@ -38,12 +38,16 @@
 #include "Leetcode/BinaryTreeTilt.cpp"
 #include "Leetcode/JumpGameIII.cpp"
 #include "Leetcode/ConsecutiveCharacters.cpp"
+#include "Leetcode/InsertionSortList.cpp"
+#include "Leetcode/MaximalSquare.cpp"
+#include "Leetcode/MinimumAbsoluteDifference.cpp"
 #include "Unsorted/RMQ.cpp"
 #include "Unsorted/SetWithUniqElts.cpp"
 #include "Combinatorics/Permutations.cpp"
+#include "Unsorted/Graph.cpp"
 
 int main() {
-    SetWithUniqElts app;
+    MinimumAbsoluteDifference app;
     app.work();
     return 0;
 }
