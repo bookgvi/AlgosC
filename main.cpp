@@ -41,13 +41,21 @@
 #include "Leetcode/InsertionSortList.cpp"
 #include "Leetcode/MaximalSquare.cpp"
 #include "Leetcode/MinimumAbsoluteDifference.cpp"
+#include "Leetcode/LongestPalindromicSubstring.cpp"
+#include "Leetcode/PowerofTwo.cpp"
+#include "Leetcode/ReorderList.cpp"
 #include "Unsorted/RMQ.cpp"
 #include "Unsorted/SetWithUniqElts.cpp"
 #include "Combinatorics/Permutations.cpp"
 #include "Unsorted/Graph.cpp"
+#include "Leetcode/CourseScheduleII.cpp"
+#include "Leetcode/CourseSchedule.cpp"
+#include "Leetcode/MergeIntervals.cpp"
+#include "Leetcode/Subsets.cpp"
+#include "String/LongestCommonSubSequence.cpp"
 
 int main() {
-    MinimumAbsoluteDifference app;
+    Subsets app;
     app.work();
     return 0;
 }
