@@ -8,34 +8,38 @@ typedef vector<int> vi;
 
 class HeapSort {
 private:
-    static void siftDown(int v, vi &arr) {
-        int len = (int) arr.size(), half = len >> 1;
+    vi siftUp(int v, vi heap) {
+        while (v > 0 && heap[v] < heap[v >> 1]) {
+            swap(heap[v], heap[v >> 1]);
+            v >>= 1;
+        }
+        return heap;
+    }
+
+    vi siftDown(int v, vi &heap) {
+        int len = (int) heap.size(), half = len >> 1;
         while (v < half) {
             int l = (v << 1) + 1;
             int r = l + 1;
-            int t = r < len && arr[r] < arr[l] ? r : l;
-            if (arr[v] <= arr[t]) break;
-            swap(arr[v], arr[t]);
+            int t = r < len && heap[r] < heap[l] ? r : l;
+            if (heap[v] <= heap[t]) break;
+            swap(heap[v], heap[t]);
             v = t;
         }
+        return heap;
     }
 
-    static void siftUp(int v, vi &arr) {
-        while (v > 0 && arr[v] < arr[v >> 1]) {
-            swap(arr[v], arr[v >> 1]);
-            v >>= 1;
-        }
-    }
-
-    static vi build(vi arr) {
-        for (int i = (int) arr.size() - 1; i >= 0; i -= 1)
-            siftDown(i, arr);
+    vi buildHeap(vi &origArr) {
+        vi arr = origArr;
+        for (auto i = (int) arr.size() - 1; i >= 0; i -= 1)
+            arr = siftDown(i, arr);
         return arr;
     }
 
-    static vi sort(vi arr) {
-        vi sorted, heap = build(arr);
-        for (int i = 0, len = (int) arr.size(); i < len; i += 1) {
+    vi sort(vi &arr) {
+        vi heap = buildHeap(arr);
+        vi sorted;
+        for (int i = 0; i < (int) arr.size(); i += 1) {
             sorted.push_back(heap[0]);
             heap[0] = INT_MAX;
             siftDown(0, heap);
@@ -43,14 +47,14 @@ private:
         return sorted;
     }
 
-    static void display(vi &arr) {
-        for (auto elt : arr)
+    void display(vi &arr) {
+        for (auto elt: arr)
             cout << elt << " ";
         cout << "\n";
     }
 
 public:
-    static void work() {
+    void work() {
         RCG rcg;
         vi arr;
         rcg._srand(123);

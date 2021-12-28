@@ -52,10 +52,14 @@
 #include "Leetcode/CourseSchedule.cpp"
 #include "Leetcode/MergeIntervals.cpp"
 #include "Leetcode/Subsets.cpp"
+#include "Leetcode/BasicCalculatorII.cpp"
+#include "Leetcode/KClosestPointstoOrigin.cpp"
+#include "Leetcode/PlusOne.cpp"
+#include "Leetcode/MiddleoftheLinkedList.cpp"
 #include "String/LongestCommonSubSequence.cpp"
 
 int main() {
-    Subsets app;
+    MiddleoftheLinkedList app;
     app.work();
     return 0;
 }

@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "LinkedList.cpp"
+#include "ListNode.cpp"
 
 using namespace std;
 typedef vector<int> vi;
