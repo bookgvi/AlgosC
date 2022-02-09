@@ -5,15 +5,15 @@ typedef vector<int> vi;
 
 class FindSubStringSuffixArr {
 private:
-    static vi suffixArray(string &str) {
-        int len = (int) str.length(), b = 8;
+    vi suffixArray(string &str) {
+        int len = str.length(), b = 8;
         vi p(len, 0), c(len, 0), count(1 << b, 0);
         for (int i = 0; i < len; i += 1)
-            count[str[i]] += 1;
+            count[str[i] - 'a'] += 1;
         for (int i = 1; i < 1 << b; i += 1)
             count[i] += count[i - 1];
         for (int i = len - 1; i >= 0; i -= 1)
-            p[--count[str[i]]] = i;
+            p[--count[str[i] - 'a']] = i;
         c[p[0]] = 0;
         int classes = 1;
         for (int i = 1; i < len; i += 1) {
@@ -46,7 +46,7 @@ private:
         return p;
     }
 
-    static int binSearchL(int chCode, vi &arr, int off, string &str) {
+    int binSearchL(int chCode, vi &arr, int off, string &str) {
         int len = (int) arr.size(), k = len - 1;
         for (int i = len >> 1; i > 0; i >>= 1)
             while (k - i >= 0
@@ -57,39 +57,39 @@ private:
         return -1;
     }
 
-    static int binSearchR(int chCode, vi &arr, int off, string &str) {
+    int binSearchR(int chCode, vi &arr, int off, string &str) {
         int len = (int) arr.size(), k = 0;
         for (int i = len >> 1; i > 0; i >>= 1)
             while (k + i < len
-                   && off < str.substr(arr[i + k]).length()
+                   && off < str.substr(arr[k + i]).length()
                    && str.substr(arr[k + i])[off] <= chCode)
                 k += i;
         if (off < str.substr(arr[k]).length() && str.substr(arr[k])[off] == chCode) return k;
         return -1;
     }
 
-    static vi searchSubStr(string &str, string &ss) {
-        int lenSS = (int) ss.length();
+    vi searchSubStr(string &str, string &ss) {
         vi p = suffixArray(str);
+        int lenSS = ss.length();
         for (int i = 0; i < lenSS; i += 1) {
             int l = binSearchL(ss[i], p, i, str);
-            if(l == -1) {
+            if (l == -1) {
                 cout << "not found...\n";
                 return {};
             }
             int r = binSearchR(ss[i], p, i, str);
-            vi tmp = p;
+            vi t = p;
             p = vi(r - l + 1, 0);
             for (int j = 0; j < r - l + 1; j += 1)
-                p[j] = tmp[l + j];
+                p[j] = t[l + j];
         }
         return p;
     }
 
 public:
     void work() {
-        string str = "abracadabra";
-        string ss = "bracadabree";
+        string str = "helloworld";
+        string ss = "l";
         string s1 = str.substr(1);
         int s10 = str.substr(1)[(int) s1.length()];
         int s11 = str.substr(1)[(int) s1.length() - 1];

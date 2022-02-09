@@ -5,11 +5,11 @@ using namespace std;
 typedef vector<int> vi;
 typedef vector<long> vl;
 
-const int MAX = 19;
+const int MAX = 20;
 
 class Permutation {
 private:
-    vi fact, catalan;
+    vl fact, catalan;
 
     string getPermutationByNum(int n, int k) {
         string res;
@@ -22,8 +22,8 @@ private:
             k = pn;
             int pos = 0;
             for (int j = 1; j <= n; j += 1) {
-                if (digits[j] == 0) pos += 1;
-                if (pos == d) {
+                if (digits[j] != 1) pos += 1;
+                if (d == pos) {
                     digits[j] = 1;
                     res += j + '0';
                     break;
@@ -33,13 +33,13 @@ private:
         return res;
     }
 
-    vi nextPermutation(vi arr) {
+    vi nextPermutation(vi &arr) {
         int len = (int) arr.size();
         for (int i = len - 2; i >= 0; i -= 1) {
             if (arr[i] < arr[i + 1]) {
                 int min = i + 1;
                 for (int j = min; j < len; j += 1)
-                    if (arr[i] < arr[min] && arr[j] > arr[i])
+                    if (arr[j] < arr[min] && arr[j] > arr[i])
                         min = j;
                 swap(arr[i], arr[min]);
                 reverse(i + 1, len - 1, arr);
@@ -49,28 +49,23 @@ private:
         return arr;
     }
 
-    void reverse(int l, int r, vi &arr) {
-        for (int i = l; i <= (r + l) >> 1; i += 1) {
-            int tmp = r + l - i;
+    void reverse(int start, int end, vi &arr) {
+        for (int i = start; i <= (start + end) >> 1; i += 1) {
+            int tmp = start + end - i;
             swap(arr[tmp], arr[i]);
         }
     }
 
-    int catalanAnalitic(int n) {
-        return fact[2 * n] / (fact[n] * fact[n + 1]);
-    }
-
-    vi getCatalan() {
-        vi catalan(MAX, 0);
-        catalan[0] = 1, catalan[1] = 1;
+    vl getCatalan() {
+        vl catalan(MAX, 1);
         for (int i = 2; i < MAX; i += 1)
             for (int j = 0; j < i; j += 1)
                 catalan[i] += catalan[j] * catalan[i - j - 1];
         return catalan;
     }
 
-    vi getFact() {
-        vi fact(MAX, 1);
+    vl getFact() {
+        vl fact(MAX, 1);
         for (int i = 1; i < MAX; i += 1)
             fact[i] = fact[i - 1] * i;
         return fact;
@@ -81,9 +76,11 @@ private:
             cout << elt << " ";
         cout << "\n";
     }
+
 public:
     Permutation() {
-        fact = getFact(), catalan = getCatalan();
+        fact = getFact();
+        catalan = getCatalan();
     }
 
     void work() {

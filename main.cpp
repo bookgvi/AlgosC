@@ -56,10 +56,14 @@
 #include "Leetcode/KClosestPointstoOrigin.cpp"
 #include "Leetcode/PlusOne.cpp"
 #include "Leetcode/MiddleoftheLinkedList.cpp"
+#include "Leetcode/KdiffPairsinanArray.cpp"
+#include "Combinatorics/Sets.cpp"
+#include "Combinatorics/Fragmentation.cpp"
 #include "String/LongestCommonSubSequence.cpp"
+#include "Unsorted/DetectCycle.cpp"
 
 int main() {
-    MiddleoftheLinkedList app;
+    DetectCycle app;
     app.work();
     return 0;
 }
